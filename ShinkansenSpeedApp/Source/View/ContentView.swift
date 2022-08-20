@@ -10,56 +10,39 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var manager = LocationManager()
 
+    let screenWidth = UIScreen.main.bounds.width
     var body: some View {
-        ZStack {
-            VStack {
-                TitleTextView()
-                Spacer()
-                SpeedMeterView()
-                Spacer()
-                BottomBarView()
-            }
-        }
-    }
+        // 速度の計算
+        let speed = manager.location.speed*3.6
+        let floorSpeed = floor(speed*10)/10
 
-    struct TitleTextView: View {
-        var body: some View {
-            Text("げんさいのそくど")
+        VStack {
+            Text("げんざいのそくど")
+                .h1Text(Color("main_red_color"))
+            Spacer()
+            Text("\(floorSpeed)")
+                .h1Text(.white)
+                .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                .background(.black)
+                .cornerRadius(10)
+            Spacer()
+            HeadLightView()
+            Spacer()
+            Text("しんかんせん")
+                .foregroundColor(.white)
                 .fontWeight(.heavy)
                 .font(.largeTitle)
-                .foregroundColor(Color("main_red_color"))
+                .padding(.top,30)
+                .frame(maxWidth: screenWidth)
+                .background(Color("main_red_color"))
         }
     }
 
-    struct SpeedMeterView: View {
-        @ObservedObject var manager = LocationManager()
+    struct HeadLightView: View {
         var body: some View {
-            ZStack {
-                let speed = manager.location.speed
-                let latitude = $manager.location.wrappedValue.coordinate.latitude
-                let longitude = $manager.location.wrappedValue.coordinate.longitude
-                Rectangle()
-                    .fill(Color.black)
-                    .cornerRadius(10)
-                    .frame(width: UIScreen.main.bounds.width/1.8, height: UIScreen.main.bounds.width/1.5 )
-                Text("\(speed)")
-                    .foregroundColor(.white)
-                    .fontWeight(.heavy)
-                    .font(.largeTitle)
-            }
-        }
-    }
-
-    struct BottomBarView: View {
-        var body: some View {
-            ZStack {
-                Rectangle()
-                    .fill(Color("main_red_color"))
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6)
-                Text("しんかんせん")
-                    .foregroundColor(.white)
-                    .fontWeight(.heavy)
-                    .font(.largeTitle)
+            HStack(spacing:150) {
+                Image("ライト左")
+                Image("ライト右")
             }
         }
     }
@@ -68,5 +51,15 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+// 別ファイルに記載
+extension Text {
+    func h1Text(_ foregroundColor: Color) -> Text {
+        self
+            .foregroundColor(foregroundColor)
+            .font(.largeTitle)
+            .fontWeight(.heavy)
     }
 }

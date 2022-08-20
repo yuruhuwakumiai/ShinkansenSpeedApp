@@ -25,5 +25,4 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                            didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
     }
-
 }
