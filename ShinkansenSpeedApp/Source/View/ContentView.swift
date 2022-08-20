@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var manager = LocationManager()
-
     let screenWidth = UIScreen.main.bounds.width
+
     var body: some View {
         // 速度の計算
         let speed = manager.location.speed*3.6
@@ -29,9 +29,7 @@ struct ContentView: View {
             HeadLightView()
             Spacer()
             Text("しんかんせん")
-                .foregroundColor(.white)
-                .fontWeight(.heavy)
-                .font(.largeTitle)
+                .h1Text(.white)
                 .padding(.top,30)
                 .frame(maxWidth: screenWidth)
                 .background(Color("main_red_color"))
