@@ -30,11 +30,29 @@ struct ContentView: View {
                     .cornerRadius(10)
             case 21..<40:
                 Text("\(floorSpeed)")
-                    .h1Text(.red)
+                    .h1Text(.white)
                     .frame(width: screenWidth/1.8, height: screenWidth/1.5)
                     .background(.black)
                     .cornerRadius(10)
             case 41..<60:
+                Text("\(floorSpeed)")
+                    .h1Text(.yellow)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            case 61..<80:
+                Text("\(floorSpeed)")
+                    .h1Text(.green)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            case 80..<90:
+                Text("\(floorSpeed)")
+                    .h1Text(.orange)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            case 91..<130:
                 Text("\(floorSpeed)")
                     .h1Text(.red)
                     .frame(width: screenWidth/1.8, height: screenWidth/1.5)
@@ -47,7 +65,6 @@ struct ContentView: View {
                     .background(.black)
                     .cornerRadius(10)
             }
-
             Spacer()
             HeadLightView()
             Spacer()
