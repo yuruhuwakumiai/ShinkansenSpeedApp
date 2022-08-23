@@ -12,6 +12,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     @Published var location = CLLocation()
     private let sound: AVAudioPlayer = try! AVAudioPlayer(data: NSDataAsset(name:"新幹線走行中")!.data)
+    private var isOnce = false
 
     private func playSound() {
         sound.currentTime = 0.0
@@ -33,8 +34,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                            didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
 
-        if location.speed > 5 {
+        if location.speed > 5 && isOnce == false {
             playSound()
+            isOnce = true
         }
     }
 }
