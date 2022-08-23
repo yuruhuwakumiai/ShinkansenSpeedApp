@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @ObservedObject var manager = LocationManager()
@@ -20,18 +21,40 @@ struct ContentView: View {
             Text("げんざいのそくど")
                 .h1Text(Color("main_red_color"))
             Spacer()
-            Text("\(floorSpeed)")
-                .h1Text(.white)
-                .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                .background(.black)
-                .cornerRadius(10)
+            switch floorSpeed {
+            case 0..<20:
+                Text("\(floorSpeed)")
+                    .h1Text(.white)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            case 21..<40:
+                Text("\(floorSpeed)")
+                    .h1Text(.red)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            case 41..<60:
+                Text("\(floorSpeed)")
+                    .h1Text(.red)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            default:
+                Text("\(floorSpeed)")
+                    .h1Text(.white)
+                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                    .background(.black)
+                    .cornerRadius(10)
+            }
+
             Spacer()
             HeadLightView()
             Spacer()
             Text("しんかんせん")
                 .h1Text(.white)
                 .padding(.top,30)
-                .frame(maxWidth: screenWidth)
+                .frame(maxWidth: .infinity)
                 .background(Color("main_red_color"))
         }
     }
