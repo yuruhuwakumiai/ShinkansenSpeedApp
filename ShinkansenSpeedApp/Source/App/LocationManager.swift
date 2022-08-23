@@ -43,7 +43,22 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         if location.speed > 5 && isOnce == false {
             isOnce = true
-            playSounds(soundfile: "新幹線走行中", loop: -1, vol: 3)
+            playSounds(soundfile: "新幹線走行中", loop: -1, vol: 1)
+        }
+
+        switch location.speed {
+        case 0..<20:
+            audioPlayer?.volume = 1
+        case 21..<40:
+            audioPlayer?.volume = 4
+        case 41..<60:
+            audioPlayer?.volume = 8
+        case 61..<80:
+            audioPlayer?.volume = 13
+        case 81..<130:
+            audioPlayer?.volume = 15
+        default:
+            break
         }
     }
 }
