@@ -11,14 +11,21 @@ import AVFoundation
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     @Published var location = CLLocation()
-    private let sound: AVAudioPlayer = try! AVAudioPlayer(data: NSDataAsset(name:"新幹線走行中")!.data)
-    private var isOnce = false
+    var audioPlayer:AVAudioPlayer?
 
-    private func playSound() {
-        sound.currentTime = 0.0
-        sound.numberOfLoops = -1
-        sound.play()
+    func playSounds(soundfile: String, loop: Int, vol: Float) {
+        let asset = NSDataAsset(name: soundfile)
+        do{
+            audioPlayer = try AVAudioPlayer(data: asset!.data, fileTypeHint: "mp3")
+            audioPlayer?.numberOfLoops = loop
+            audioPlayer?.volume = vol
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+        }catch {
+            print("Error")
+        }
     }
+    private var isOnce = false
 
     override init() {
         super.init()
@@ -35,8 +42,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.location = locations.last!
 
         if location.speed > 5 && isOnce == false {
-            playSound()
             isOnce = true
+            playSounds(soundfile: "新幹線走行中", loop: -1, vol: 3)
         }
     }
 }
