@@ -4,12 +4,20 @@
 //
 //  Created by 橋元雄太郎 on 2022/08/19.
 //
-
+import SwiftUI
 import CoreLocation
+import AVFoundation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
+    private let manager = CLLocationManager()
     @Published var location = CLLocation()
+    private let sound: AVAudioPlayer = try! AVAudioPlayer(data: NSDataAsset(name:"新幹線走行中")!.data)
+
+    private func playSound() {
+        sound.currentTime = 0.0
+        sound.numberOfLoops = -1
+        sound.play()
+    }
 
     override init() {
         super.init()
@@ -24,5 +32,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                            didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
+
+        if location.speed > 5 {
+            playSound()
+        }
     }
 }
