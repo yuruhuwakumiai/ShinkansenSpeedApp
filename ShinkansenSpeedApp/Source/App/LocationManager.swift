@@ -9,11 +9,15 @@ import CoreLocation
 import AVFoundation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let manager = CLLocationManager()
     @Published var location = CLLocation()
-    var audioPlayer:AVAudioPlayer?
+    private let manager = CLLocationManager()
+    private var audioPlayer:AVAudioPlayer?
+    private var isOnce1 = false
+    private var isOnce2 = false
+    private var isOnce3 = false
+    private var isOnce4 = false
 
-    func playSounds(soundfile: String, loop: Int, vol: Float) {
+    private func playSounds(soundfile: String, loop: Int, vol: Float) {
         let asset = NSDataAsset(name: soundfile)
         do{
             audioPlayer = try AVAudioPlayer(data: asset!.data, fileTypeHint: "mp3")
@@ -25,7 +29,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             print("Error")
         }
     }
-    private var isOnce = false
 
     override init() {
         super.init()
@@ -33,32 +36,33 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.manager.delegate = self
         self.manager.requestWhenInUseAuthorization()
         self.manager.desiredAccuracy = kCLLocationAccuracyBest
-        self.manager.distanceFilter = 2
+        self.manager.distanceFilter = 1
         self.manager.startUpdatingLocation()
     }
 
     func locationManager(_ manager: CLLocationManager,
-                           didUpdateLocations locations: [CLLocation]) {
+                         didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
+        let speedSelectNum = Int(location.speed*3.6)
 
-        if location.speed > 5 && isOnce == false {
-            isOnce = true
-            playSounds(soundfile: "新幹線走行中", loop: -1, vol: 1)
+        if speedSelectNum > 10 && isOnce1 == false {
+            playSounds(soundfile: "出発進行！！", loop: 0, vol: 10)
+            isOnce1 = true
         }
 
-        switch location.speed {
-        case 0..<20:
-            audioPlayer?.volume = 1
-        case 21..<40:
-            audioPlayer?.volume = 4
-        case 41..<60:
-            audioPlayer?.volume = 8
-        case 61..<80:
-            audioPlayer?.volume = 13
-        case 81..<130:
-            audioPlayer?.volume = 15
-        default:
-            break
+        if speedSelectNum > 50 && isOnce2 == false {
+            playSounds(soundfile: "５０キロ", loop: 0, vol: 10)
+            isOnce2 = true
+        }
+
+        if speedSelectNum > 70 && isOnce3 == false {
+            playSounds(soundfile: "７０キロ", loop: 0, vol: 10)
+            isOnce3 = true
+        }
+
+        if speedSelectNum > 90 && isOnce4 == false {
+            playSounds(soundfile: "最高速度接近", loop: 0, vol: 10)
+            isOnce4 = true
         }
     }
 }
