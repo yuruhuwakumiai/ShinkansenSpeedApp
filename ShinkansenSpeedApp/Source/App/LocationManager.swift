@@ -19,13 +19,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     private func playSounds(soundfile: String, loop: Int, vol: Float) {
         let asset = NSDataAsset(name: soundfile)
-        do{
+        do {
             audioPlayer = try AVAudioPlayer(data: asset!.data, fileTypeHint: "mp3")
             audioPlayer?.numberOfLoops = loop
             audioPlayer?.volume = vol
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
-        }catch {
+        } catch {
             print("Error")
         }
     }
