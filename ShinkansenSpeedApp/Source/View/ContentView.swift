@@ -20,8 +20,6 @@ struct ContentView: View {
     @State var speed: Int
 
     var body: some View {
-        // 速度(整数)
-        let speed = Int(manager.location.speed*3.6)
         VStack {
             Text("げんざいのそくど")
                 .h1Text(Color("main_red_color"))
@@ -62,6 +60,7 @@ struct ContentView: View {
     }
     
     private func setSpeed() {
+        speed = Int(manager.location.speed*3.6)
         switch speed {
         case 0..<20:
             self.textColor = .blue
