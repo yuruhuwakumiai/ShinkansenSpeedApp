@@ -17,10 +17,11 @@ struct ContentView: View {
     }
     
     @State var textColor: Color = .black
-    // 速度の計算(整数)
     @State var speed: Int
 
     var body: some View {
+        // 速度(整数)
+        let speed = Int(manager.location.speed*3.6)
         VStack {
             Text("げんざいのそくど")
                 .h1Text(Color("main_red_color"))
@@ -40,7 +41,7 @@ struct ContentView: View {
                 .background(Color("main_red_color"))
             
             Button(action: {
-                speed = Int.random(in: 0...130)
+//                speed = Int.random(in: 0...130)
                 setSpeed()
             }) {
                 Text("speed変更")
