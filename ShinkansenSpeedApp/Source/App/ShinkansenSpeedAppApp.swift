@@ -13,7 +13,7 @@ struct ShinkansenSpeedAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(speed: 0)
         }
     }
 }

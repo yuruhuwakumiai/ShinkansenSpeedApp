@@ -15,59 +15,21 @@ struct ContentView: View {
     private func playSound(){
         shinkansenSound.play()
     }
+    
+    @State var textColor: Color = .black
+    // 速度の計算(整数)
+    @State var speed: Int
 
     var body: some View {
-        // 速度の計算(整数)
-        let speed = Int(manager.location.speed*3.6)
-
         VStack {
             Text("げんざいのそくど")
                 .h1Text(Color("main_red_color"))
             Spacer()
-            switch speed {
-            case 0..<20:
-                Text("\(speed)km")
-                    .h1Text(.blue)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            case 21..<40:
-                Text("\(speed)km")
-                    .h1Text(.yellow)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            case 41..<60:
-                Text("\(speed)km")
-                    .h1Text(.orange)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            case 61..<80:
-                Text("\(speed)km")
-                    .h1Text(.pink)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            case 80..<90:
-                Text("\(speed)km")
-                    .h1Text(.green)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            case 91..<130:
-                Text("\(speed)km")
-                    .h1Text(.red)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            default:
-                Text("\(speed)km")
-                    .h1Text(.white)
-                    .frame(width: screenWidth/1.8, height: screenWidth/1.5)
-                    .background(.black)
-                    .cornerRadius(10)
-            }
+            Text("\(speed)km")
+                .h1Text(textColor)
+                .frame(width: screenWidth/1.8, height: screenWidth/1.5)
+                .background(.black)
+                .cornerRadius(10)
             Spacer()
             HeadLightView()
             Spacer()
@@ -76,6 +38,16 @@ struct ContentView: View {
                 .padding(.top,30)
                 .frame(maxWidth: .infinity)
                 .background(Color("main_red_color"))
+            
+            Button(action: {
+                speed = Int.random(in: 0...130)
+                setSpeed()
+            }) {
+                Text("speed変更")
+            }
+        }
+        .onAppear {
+            setSpeed()
         }
     }
 
@@ -87,13 +59,32 @@ struct ContentView: View {
             }
         }
     }
-}
-
-struct ContentView_Previews:  PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    private func setSpeed() {
+        switch speed {
+        case 0..<20:
+            self.textColor = .blue
+        case 21..<40:
+            self.textColor = .yellow
+        case 41..<60:
+            self.textColor = .orange
+        case 61..<80:
+            self.textColor = .pink
+        case 80..<90:
+            self.textColor = .green
+        case 91..<130:
+            self.textColor = .red
+        default:
+            self.textColor = .white
+        }
     }
 }
+
+//struct ContentView_Previews:  PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 
 // 別ファイルに記載
 extension Text {
