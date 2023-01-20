@@ -11,7 +11,8 @@ import AVFoundation
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location = CLLocation() // locationをObservableObjectにして使用するクラスでインスタンスする
     private let manager = CLLocationManager()
-    private var audioPlayer:AVAudioPlayer?
+    private var audioPlayer:AVAudioPlayer? // 音声もManagerにしたい
+    let audioPlayerManager = AudioPlayerManager()
     private var isOnce1 = false
     private var isOnce2 = false
     private var isOnce3 = false
@@ -42,10 +43,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
-        let speedSelectNum = Int(location.speed*3.6)
+        let speedSelectNum = Int(location.speed*3.6) // 速度で文字を表示させるための変数
 
         if speedSelectNum > 10 && isOnce1 == false {
-            playSounds(soundfile: "出発進行！！", loop: 0, vol: 10)
+            audioPlayerManager.playSound(sound: "出発進行", type: "mp3") // Managerクラスからインスタンスした
             isOnce1 = true
         }
 

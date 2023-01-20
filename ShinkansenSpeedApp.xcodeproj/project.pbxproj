@@ -13,6 +13,7 @@
 		092ACB6928AE71DA003E748E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 092ACB6828AE71DA003E748E /* Preview Assets.xcassets */; };
 		092ACB7628AF1FFC003E748E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 092ACB7528AF1FFC003E748E /* CoreLocation.framework */; };
 		092ACB7928AFAA3E003E748E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092ACB7828AFAA3E003E748E /* LocationManager.swift */; };
+		0986A8AF297AA4FA00E36311 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986A8AE297AA4FA00E36311 /* SoundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		092ACB7528AF1FFC003E748E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		092ACB7728AF8740003E748E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		092ACB7828AFAA3E003E748E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0986A8AE297AA4FA00E36311 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		092ACB6028AE71D9003E748E /* ShinkansenSpeedApp */ = {
 			isa = PBXGroup;
 			children = (
+				0986A8AD297AA4E300E36311 /* Manager */,
 				092ACB7728AF8740003E748E /* Info.plist */,
 				092ACB7028AF1893003E748E /* Resource */,
 				092ACB6F28AF1887003E748E /* Source */,
@@ -122,6 +125,14 @@
 				092ACB7528AF1FFC003E748E /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0986A8AD297AA4E300E36311 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0986A8AE297AA4FA00E36311 /* SoundManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				092ACB6428AE71D9003E748E /* ContentView.swift in Sources */,
+				0986A8AF297AA4FA00E36311 /* SoundManager.swift in Sources */,
 				092ACB6228AE71D9003E748E /* ShinkansenSpeedAppApp.swift in Sources */,
 				092ACB7928AFAA3E003E748E /* LocationManager.swift in Sources */,
 			);
