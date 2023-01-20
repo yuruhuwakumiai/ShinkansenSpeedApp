@@ -9,7 +9,7 @@ import CoreLocation
 import AVFoundation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var location = CLLocation()
+    @Published var location = CLLocation() // locationをObservableObjectにして使用するクラスでインスタンスする
     private let manager = CLLocationManager()
     private var audioPlayer:AVAudioPlayer?
     private var isOnce1 = false
@@ -32,7 +32,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     override init() {
         super.init()
-
         self.manager.delegate = self
         self.manager.requestWhenInUseAuthorization()
         self.manager.desiredAccuracy = kCLLocationAccuracyBest

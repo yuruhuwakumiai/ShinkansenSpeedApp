@@ -9,16 +9,16 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-    @ObservedObject var manager = LocationManager()
-    let screenWidth = UIScreen.main.bounds.width
-    private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
-    private func playSound(){
-        shinkansenSound.play()
-    }
-    
+
     @State var textColor: Color = .black
     @State var speed: Int
 
+    @ObservedObject var manager = LocationManager()
+    let screenWidth = UIScreen.main.bounds.width  // ファイル分けたい
+    private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
+    private func playSound() {
+        shinkansenSound.play()
+    }
     var body: some View {
         VStack {
             Text("げんざいのそくど")
@@ -39,11 +39,13 @@ struct ContentView: View {
                 .background(Color("main_red_color"))
             
             Button(action: {
-//                speed = Int.random(in: 0...130)
+                //                speed = Int.random(in: 0...130)
                 setSpeed()
             }) {
-                Text("speed変更")
+                Text("速度を変える")
             }
+            Text("\(manager.location.coordinate.latitude)")
+            Text("\(manager.location.coordinate.longitude)")      // これで現在地いけた
         }
         .onAppear {
             setSpeed()
@@ -64,15 +66,15 @@ struct ContentView: View {
         switch speed {
         case 0..<20:
             self.textColor = .blue
-        case 21..<40:
+        case 20..<40:
             self.textColor = .yellow
-        case 41..<60:
+        case 40..<60:
             self.textColor = .orange
-        case 61..<80:
+        case 60..<80:
             self.textColor = .pink
         case 80..<90:
             self.textColor = .green
-        case 91..<130:
+        case 90..<130:
             self.textColor = .red
         default:
             self.textColor = .white
