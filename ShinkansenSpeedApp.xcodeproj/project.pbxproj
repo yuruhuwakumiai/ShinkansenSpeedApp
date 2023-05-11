@@ -14,6 +14,7 @@
 		092ACB7628AF1FFC003E748E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 092ACB7528AF1FFC003E748E /* CoreLocation.framework */; };
 		092ACB7928AFAA3E003E748E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092ACB7828AFAA3E003E748E /* LocationManager.swift */; };
 		0986A8AF297AA4FA00E36311 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986A8AE297AA4FA00E36311 /* SoundManager.swift */; };
+		09C6251829BDCC3800600CB0 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C6251729BDCC3800600CB0 /* FontExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		092ACB7728AF8740003E748E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		092ACB7828AFAA3E003E748E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0986A8AE297AA4FA00E36311 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		09C6251729BDCC3800600CB0 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				092ACB6028AE71D9003E748E /* ShinkansenSpeedApp */,
-				092ACB5F28AE71D9003E748E /* Products */,
-				092ACB7428AF1FFC003E748E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,16 +55,15 @@
 				092ACB5E28AE71D9003E748E /* ShinkansenSpeedApp.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		092ACB6028AE71D9003E748E /* ShinkansenSpeedApp */ = {
 			isa = PBXGroup;
 			children = (
-				0986A8AD297AA4E300E36311 /* Manager */,
-				092ACB7728AF8740003E748E /* Info.plist */,
 				092ACB7028AF1893003E748E /* Resource */,
 				092ACB6F28AF1887003E748E /* Source */,
-				092ACB6728AE71DA003E748E /* Preview Content */,
+				092ACB7728AF8740003E748E /* Info.plist */,
 			);
 			path = ShinkansenSpeedApp;
 			sourceTree = "<group>";
@@ -80,6 +79,11 @@
 		092ACB6F28AF1887003E748E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				092ACB6728AE71DA003E748E /* Preview Content */,
+				092ACB5F28AE71D9003E748E /* Products */,
+				092ACB7428AF1FFC003E748E /* Frameworks */,
+				0986A8AD297AA4E300E36311 /* Manager */,
+				09C6251629BDCC1C00600CB0 /* Extensions */,
 				092ACB7328AF1A89003E748E /* Storyboard */,
 				092ACB7228AF1A82003E748E /* View */,
 				092ACB7128AF1A7B003E748E /* App */,
@@ -99,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				092ACB6128AE71D9003E748E /* ShinkansenSpeedAppApp.swift */,
-				092ACB7828AFAA3E003E748E /* LocationManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -125,14 +128,24 @@
 				092ACB7528AF1FFC003E748E /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		0986A8AD297AA4E300E36311 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				0986A8AE297AA4FA00E36311 /* SoundManager.swift */,
+				092ACB7828AFAA3E003E748E /* LocationManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		09C6251629BDCC1C00600CB0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				09C6251729BDCC3800600CB0 /* FontExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C6251829BDCC3800600CB0 /* FontExtension.swift in Sources */,
 				092ACB6428AE71D9003E748E /* ContentView.swift in Sources */,
 				0986A8AF297AA4FA00E36311 /* SoundManager.swift in Sources */,
 				092ACB6228AE71D9003E748E /* ShinkansenSpeedAppApp.swift in Sources */,
@@ -336,7 +350,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ShinkansenSpeedApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ShinkansenSpeedApp/Source/Preview Content\"";
 				DEVELOPMENT_TEAM = J8NG2572RV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -369,7 +383,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ShinkansenSpeedApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ShinkansenSpeedApp/Source/Preview Content\"";
 				DEVELOPMENT_TEAM = J8NG2572RV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

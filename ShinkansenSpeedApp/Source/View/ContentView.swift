@@ -9,16 +9,10 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-
-    @State var textColor: Color = .black
-    @State var speed: Int
-
     @ObservedObject var manager = LocationManager()
-    let screenWidth = UIScreen.main.bounds.width  // ファイル分けたい
+    let screenWidth = UIScreen.main.bounds.width
     private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
-    private func playSound() {
-        shinkansenSound.play()
-    }
+
     var body: some View {
         VStack {
             Text("げんざいのそくど")
@@ -37,19 +31,37 @@ struct ContentView: View {
                 .padding(.top,30)
                 .frame(maxWidth: .infinity)
                 .background(Color("main_red_color"))
-            
-            Button(action: {
-                //                speed = Int.random(in: 0...130)
-                setSpeed()
-            }) {
-                Text("速度を変える")
-            }
-            Text("\(manager.location.coordinate.latitude)")
-            Text("\(manager.location.coordinate.longitude)")      // これで現在地いけた
         }
         .onAppear {
-            setSpeed()
+            playSound()
         }
+    }
+
+    private var speed: Int {
+        Int(manager.location.speed*3.6)
+    }
+
+    private var textColor: Color {
+        switch speed {
+        case 0..<20:
+            return .blue
+        case 20..<40:
+            return .yellow
+        case 40..<60:
+            return .orange
+        case 60..<80:
+            return .pink
+        case 80..<90:
+            return .green
+        case 90..<130:
+            return .red
+        default:
+            return .white
+        }
+    }
+
+    private func playSound() {
+        shinkansenSound.play()
     }
 
     struct HeadLightView: View {
@@ -60,40 +72,10 @@ struct ContentView: View {
             }
         }
     }
-    
-    private func setSpeed() {
-        speed = Int(manager.location.speed*3.6)
-        switch speed {
-        case 0..<20:
-            self.textColor = .blue
-        case 20..<40:
-            self.textColor = .yellow
-        case 40..<60:
-            self.textColor = .orange
-        case 60..<80:
-            self.textColor = .pink
-        case 80..<90:
-            self.textColor = .green
-        case 90..<130:
-            self.textColor = .red
-        default:
-            self.textColor = .white
-        }
-    }
 }
 
-//struct ContentView_Previews:  PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
-
-// 別ファイルに記載
-extension Text {
-    func h1Text(_ foregroundColor: Color) -> Text {
-        self
-            .foregroundColor(foregroundColor)
-            .font(.largeTitle)
-            .fontWeight(.heavy)
+struct ContentView_Previews:  PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
