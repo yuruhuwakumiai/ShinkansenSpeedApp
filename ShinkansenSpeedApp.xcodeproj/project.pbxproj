@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		092ACB6228AE71D9003E748E /* ShinkansenSpeedAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092ACB6128AE71D9003E748E /* ShinkansenSpeedAppApp.swift */; };
-		092ACB6428AE71D9003E748E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092ACB6328AE71D9003E748E /* ContentView.swift */; };
+		092ACB6428AE71D9003E748E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092ACB6328AE71D9003E748E /* HomeView.swift */; };
 		092ACB6628AE71DA003E748E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 092ACB6528AE71DA003E748E /* Assets.xcassets */; };
 		092ACB6928AE71DA003E748E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 092ACB6828AE71DA003E748E /* Preview Assets.xcassets */; };
 		092ACB7628AF1FFC003E748E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 092ACB7528AF1FFC003E748E /* CoreLocation.framework */; };
@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		092ACB5E28AE71D9003E748E /* ShinkansenSpeedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShinkansenSpeedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		092ACB6128AE71D9003E748E /* ShinkansenSpeedAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinkansenSpeedAppApp.swift; sourceTree = "<group>"; };
-		092ACB6328AE71D9003E748E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		092ACB6328AE71D9003E748E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		092ACB6528AE71DA003E748E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		092ACB6828AE71DA003E748E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		092ACB7528AF1FFC003E748E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -110,7 +110,7 @@
 		092ACB7228AF1A82003E748E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				092ACB6328AE71D9003E748E /* ContentView.swift */,
+				092ACB6328AE71D9003E748E /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C6251829BDCC3800600CB0 /* FontExtension.swift in Sources */,
-				092ACB6428AE71D9003E748E /* ContentView.swift in Sources */,
+				092ACB6428AE71D9003E748E /* HomeView.swift in Sources */,
 				0986A8AF297AA4FA00E36311 /* SoundManager.swift in Sources */,
 				092ACB6228AE71D9003E748E /* ShinkansenSpeedAppApp.swift in Sources */,
 				092ACB7928AFAA3E003E748E /* LocationManager.swift in Sources */,

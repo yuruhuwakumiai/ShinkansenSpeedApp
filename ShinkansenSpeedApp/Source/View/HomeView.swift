@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  ShinkansenSpeedApp
 //
 //  Created by 橋元雄太郎 on 2022/08/18.
@@ -8,7 +8,7 @@
 import SwiftUI
 import AVFoundation
 
-struct ContentView: View {
+struct HomeView: View {
     @ObservedObject var manager = LocationManager()
     let screenWidth = UIScreen.main.bounds.width
     private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
@@ -76,6 +76,6 @@ struct ContentView: View {
 
 struct ContentView_Previews:  PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
