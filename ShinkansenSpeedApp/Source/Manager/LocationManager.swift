@@ -11,8 +11,10 @@ import AVFoundation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location = CLLocation()
-    private let manager = CLLocationManager()
+    @Published var speed: Int = 0 // 速度を監視する
+    private let manager = CLLocationManager()   
     let audioPlayerManager = AudioPlayerManager()
+    
 
     private var audioPlayedForSpeed = [Int: Bool]()
 
@@ -34,10 +36,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
-        let speedSelectNum = Int(location.speed*3.6)
+        self.speed = Int(location.speed*3.6) // 速度を更新
 
         for mapping in speedToSoundMapping {
-            if speedSelectNum > mapping.speed, audioPlayedForSpeed[mapping.speed] == nil {
+            if speed > mapping.speed, audioPlayedForSpeed[mapping.speed] == nil {
                 audioPlayerManager.playSound(sound: mapping.soundfile, type: "mp3")
                 audioPlayedForSpeed[mapping.speed] = true
             }

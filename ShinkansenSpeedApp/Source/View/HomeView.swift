@@ -18,7 +18,7 @@ struct HomeView: View {
             Text("げんざいのそくど")
                 .h1Text(Color("main_red_color"))
             Spacer()
-            Text("\(speed)km")
+            Text("\(manager.speed)km")
                 .h1Text(textColor)
                 .frame(width: screenWidth/1.8, height: screenWidth/1.5)
                 .background(.black)
@@ -37,12 +37,8 @@ struct HomeView: View {
         }
     }
 
-    private var speed: Int {
-        Int(manager.location.speed*3.6)
-    }
-
     private var textColor: Color {
-        switch speed {
+        switch manager.speed {
         case 0..<20:
             return .blue
         case 20..<40:
