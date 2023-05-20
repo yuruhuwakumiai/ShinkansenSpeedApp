@@ -10,8 +10,16 @@ import AVFoundation
 
 struct HomeView: View {
     @ObservedObject var manager = LocationManager()
+    let audioPlayerManager = AudioPlayerManager()
     let screenWidth = UIScreen.main.bounds.width
-    private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
+//    private let shinkansenSound = try!  AVAudioPlayer(data: NSDataAsset(name: "新幹線走行中")!.data)
+    @State var speedToSoundMapping: [(speed: Int, soundfile: String, played: Bool)] = [
+        (10, "R350警報音", false),
+        (50, "R300警報音", false),
+        (70, "R250警報", false),
+        (90, "最高速度接近", false)
+    ]
+
 
     var body: some View {
         VStack {
@@ -32,7 +40,11 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity)
                 .background(Color("main_red_color"))
         }
+        // MARK: んー、再生しない〜
         .onAppear {
+            playSound()
+        }
+        .onReceive(manager.$speed) { _ in
             playSound()
         }
     }
@@ -56,9 +68,15 @@ struct HomeView: View {
         }
     }
 
-    private func playSound() {
-        shinkansenSound.play()
+    func playSound() {
+        for index in speedToSoundMapping.indices {
+            if manager.speed >= speedToSoundMapping[index].speed && manager.speed < (index + 1 < speedToSoundMapping.count ? speedToSoundMapping[index + 1].speed : Int.max) && !speedToSoundMapping[index].played {
+                audioPlayerManager.playSound(sound: speedToSoundMapping[index].soundfile, type: "mp3")
+                speedToSoundMapping[index].played = true
+            }
+        }
     }
+
 
     struct HeadLightView: View {
         var body: some View {

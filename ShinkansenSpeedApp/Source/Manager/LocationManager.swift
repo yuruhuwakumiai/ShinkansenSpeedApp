@@ -13,18 +13,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location = CLLocation()
     @Published var speed: Int = 0 // 速度を監視する
     private let manager = CLLocationManager()   
-    let audioPlayerManager = AudioPlayerManager()
     
-
-    private var audioPlayedForSpeed = [Int: Bool]()
-
-    private let speedToSoundMapping: [(speed: Int, soundfile: String)] = [
-        (10, "出発進行"),
-        (50, "５０キロ"),
-        (70, "７０キロ"),
-        (90, "最高速度接近")
-    ]
-
     override init() {
         super.init()
         self.manager.delegate = self
@@ -37,12 +26,5 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = locations.last!
         self.speed = Int(location.speed*3.6) // 速度を更新
-
-        for mapping in speedToSoundMapping {
-            if speed > mapping.speed, audioPlayedForSpeed[mapping.speed] == nil {
-                audioPlayerManager.playSound(sound: mapping.soundfile, type: "mp3")
-                audioPlayedForSpeed[mapping.speed] = true
-            }
-        }
     }
 }
